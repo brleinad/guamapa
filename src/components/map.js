@@ -14,9 +14,6 @@ export function Map() {
     {
       "type": "Feature",
       "properties": {
-        "marker-color": "#7e7e7e",
-        "marker-size": "medium",
-        "marker-symbol": "",
         "poblacion": 123
       },
       "geometry": {
