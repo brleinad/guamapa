@@ -2,6 +2,7 @@ import './app.css';
 
 import * as React from 'react'
 // import {useUser} from './context/auth'
+import axios from './axiosConfig'
 import AuthenticatedApp from './authenticated-app'
 import UnauthenticatedApp from './unauthenticated-app'
 
@@ -14,3 +15,4 @@ function App() {
   return user ? <AuthenticatedApp /> : <UnauthenticatedApp />
 }
 export default App;
+

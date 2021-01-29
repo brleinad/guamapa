@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -11,12 +10,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Map } from './map'
 
 const drawerWidth = 240;
 
@@ -68,14 +65,14 @@ export function Main(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button key={'cuenta'}>
+        <ListItem button key={'Comunidades'}>
           <ListItemIcon><InboxIcon /></ListItemIcon>
-          <ListItemText primary={'cuenta'} />
+          <ListItemText primary={'Comunidades'} />
         </ListItem>
         
-        <ListItem button key={'importar'}>
+        <ListItem button key={'Alcaldes Auxiliares'}>
           <ListItemIcon><InboxIcon /></ListItemIcon>
-          <ListItemText primary={'importar'} />
+          <ListItemText primary={'Alcaldes Auxiliares'} />
         </ListItem>
 
       </List>
@@ -100,7 +97,7 @@ export function Main(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            GuamaPa 
+              Antigua Guatemala
           </Typography>
         </Toolbar>
       </AppBar>
@@ -137,18 +134,8 @@ export function Main(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Map/>
+        {props.children}
       </main>
     </div>
   );
 }
-
-// ResponsiveDrawer.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * You won't need it on your project.
-//    */
-//   window: PropTypes.func,
-// };
-
-// export default ResponsiveDrawer;
