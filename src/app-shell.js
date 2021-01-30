@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Main(props) {
+const AppShell = (props) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -70,14 +70,19 @@ export function Main(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button key={'Comunidades'}>
+        <ListItem button key={'Mapa'}>
           <ListItemIcon><InboxIcon /></ListItemIcon>
-          <ListItemText primary={'Comunidades'} />
+          <ListItemText primary={'Mapa'} />
         </ListItem>
         
         <ListItem button key={'Alcaldes Auxiliares'}>
           <ListItemIcon><InboxIcon /></ListItemIcon>
           <ListItemText primary={'Alcaldes Auxiliares'} />
+        </ListItem>
+
+        <ListItem button key={'Agregar Comunidad'}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary={'Agregar Comunidad'} />
         </ListItem>
 
       </List>
@@ -145,3 +150,5 @@ export function Main(props) {
     </div>
   );
 }
+
+export default AppShell;
