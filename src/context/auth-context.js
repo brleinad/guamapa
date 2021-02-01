@@ -28,8 +28,8 @@ const AuthProvider = ({ children }) => {
     setAuthState({
       accessToken,
       refreshToken,
-      user,
-      expiresAt
+      expiresAt,
+      user
     });
   };
 
@@ -53,8 +53,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const isStaff = () => {
-    //   return authState.user.is_staff; TODO
-      return isAuthenticated();
+      return authState.user.is_staff;
   }
 
   return (

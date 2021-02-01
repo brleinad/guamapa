@@ -15,6 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -109,7 +110,7 @@ const AppShell = (props) => {
           <Typography className={classes.title} variant="h6" noWrap>
             Antigua Guatemala
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" component={Link} to="/login">Login</Button>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
