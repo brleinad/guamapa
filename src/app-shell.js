@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -16,6 +16,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './context/auth-context';
 
 const drawerWidth = 240;
 
@@ -60,7 +61,8 @@ const AppShell = (props) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const authContext =  useContext(AuthContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -110,7 +112,10 @@ const AppShell = (props) => {
           <Typography className={classes.title} variant="h6" noWrap>
             Antigua Guatemala
           </Typography>
-          <Button color="inherit" component={Link} to="/login">Login</Button>
+          { authContext.isAuthenticated() 
+            ? (<Button color="inherit" onClick={authContext.logout}>Logout</Button>)
+            : (<Button color="inherit" component={Link} to="/login">Login</Button>)
+          }
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

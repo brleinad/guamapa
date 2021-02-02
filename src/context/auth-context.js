@@ -34,15 +34,19 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");
     setAuthState({});
-    history.push("/login");
+    // history.push("/login");
+    console.log('logging out')
+    history.push("/");
   };
 
   const isAuthenticated = () => {
     // TODO: check expiration in token
     console.log({ accessToken, refreshToken, user });
     if (!authState.accessToken) {
+      console.log('already looggees out')
       return false;
     }
+    console.log(`token is ${authState.accessToken}`)
     return (
       // TODO actually check
       true

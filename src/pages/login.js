@@ -35,7 +35,11 @@ const Login = () => {
         `api-auth/login/`, credentials
       );
       console.log({data})
-      authContext.setAuthState(data);
+      authContext.setAuthState({
+        accessToken: data.access_token,
+        refreshToken: data.refresh_token,
+        user: data.user,
+      });
       setLoginSuccess('Login Successful')
       setLoginError(null)
 
