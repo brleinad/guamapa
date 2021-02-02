@@ -6,7 +6,7 @@ import { AuthContext } from "./auth-context";
 const FetchContext = createContext();
 const { Provider } = FetchContext;
 
-export const FetchProvider = ({ children }) => {
+const FetchProvider = ({ children }) => {
   const authContext = useContext(AuthContext);
 
   const authAxios = axios.create({
@@ -41,3 +41,5 @@ export const FetchProvider = ({ children }) => {
       </Provider>
   );
 };
+
+export { FetchContext, FetchProvider }

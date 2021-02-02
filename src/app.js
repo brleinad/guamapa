@@ -12,7 +12,7 @@ import { AuthProvider, AuthContext } from './context/auth-context';
 import { FetchProvider } from './context/fetch-context';
 import Login from './pages/login';
 import AppShell from './app-shell';
-import { Map } from './components/map';
+import Map from './components/map';
 
 // import {useUser} from './context/auth'
 // import axios from './axiosConfig'
