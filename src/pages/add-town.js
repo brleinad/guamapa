@@ -42,7 +42,12 @@ const AddTown = () => {
     console.log('submitting')
     console.log(townValues);
     try {
-      const { data } = await fetchContext.authAxios.post('api/v1/towns/', townValues)
+      townValues.location = {
+        type: 'Point',
+        coordinates: [townValues.lng, townValues.lat]
+      }
+      const { data } = await fetchContext.authAxios.post('api/v1/towns/', 
+      townValues)
       console.log('fetched')
       console.log(data);
     } catch (error) {

@@ -28,7 +28,26 @@ const FetchProvider = ({ children }) => {
   }
 
   const resetTokenAndReattempt = async (error) => {
-    
+    const originalRequest = error.config;
+    if (originalRequest._retry) {
+      return Promise.reject(error);
+    }
+    originalRequest._retry = true;
+    return axios
+      .post(`api-auth/token/refresh/`, { refresh: authContext.authState.refreshToken })
+      .then((res) => {
+        if (res.status === 200) {
+          authContext.setAuthState({
+            accessToken: res.data.access,
+            refreshToken: authContext.authState.refreshToken,
+            user: authContext.authState.user,
+          })
+          originalRequest.headers.Authorization = `bearer ${res.data.access}`;
+          console.log("Access token refreshed!");
+          console.log(res.data)
+          return authAxios(originalRequest);
+        }
+      });
   }
 
   authAxios.interceptors.response.use(
@@ -38,9 +57,8 @@ const FetchProvider = ({ children }) => {
       const code = error && error.response ? error.response.status : 0;
       console.log('error resp')
       console.log(error.response)
-      if (isTokenExpired(error.response)) {
-        resetTokenAndReattempt(error);
-
+      if (code === 403 && isTokenExpired(error.response)) {
+        return resetTokenAndReattempt(error);
       }
       if (code === 401 || code === 403) {
           console.log(`error code: ${code}`);
