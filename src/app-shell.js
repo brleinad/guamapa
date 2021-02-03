@@ -73,7 +73,7 @@ const AppShell = (props) => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button key={'Mapa'}>
+        <ListItem button key={'Mapa'} component={Link} to="/">
           <ListItemIcon><InboxIcon /></ListItemIcon>
           <ListItemText primary={'Mapa'} />
         </ListItem>
@@ -83,7 +83,7 @@ const AppShell = (props) => {
           <ListItemText primary={'Alcaldes Auxiliares'} />
         </ListItem>
 
-        <ListItem button key={'Agregar Comunidad'}>
+        <ListItem button key={'Agregar Comunidad'} component={Link} to="/agregar">
           <ListItemIcon><InboxIcon /></ListItemIcon>
           <ListItemText primary={'Agregar Comunidad'} />
         </ListItem>

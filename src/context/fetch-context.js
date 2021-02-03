@@ -15,7 +15,7 @@ const FetchProvider = ({ children }) => {
 
   authAxios.interceptors.request.use(
     (config) => {
-      config.headers.Authorization = `Bearer ${authContext.authState.token}`;
+      config.headers.Authorization = `Bearer ${authContext.authState.accessToken}`;
       return config;
     },
     (error) => {
@@ -23,11 +23,25 @@ const FetchProvider = ({ children }) => {
     }
   );
 
+  const isTokenExpired = (errorResponse) => {
+    return ( errorResponse.data.code === 'token_not_valid') 
+  }
+
+  const resetTokenAndReattempt = async (error) => {
+    
+  }
+
   authAxios.interceptors.response.use(
     response => {
       return response;
     }, error => {
       const code = error && error.response ? error.response.status : 0;
+      console.log('error resp')
+      console.log(error.response)
+      if (isTokenExpired(error.response)) {
+        resetTokenAndReattempt(error);
+
+      }
       if (code === 401 || code === 403) {
           console.log(`error code: ${code}`);
       }

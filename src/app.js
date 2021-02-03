@@ -13,6 +13,7 @@ import { FetchProvider } from './context/fetch-context';
 import Login from './pages/login';
 import AppShell from './app-shell';
 import Map from './components/map';
+import AddTown from './pages/add-town';
 
 // import {useUser} from './context/auth'
 // import axios from './axiosConfig'
@@ -60,11 +61,30 @@ const AuthenticatedRoute = ({ children, ...rest }) => {
   );
 };
 
+const StaffRoute = ({ children, ...rest }) => {
+  const auth = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={() => 
+        auth.isAuthenticated() && auth.isStaff() ? (
+          <AppShell>{children}</AppShell>
+        ) : (
+          <Redirect to="/" />
+        )
+      }
+      ></Route>
+  );
+};
+
 const AppRoutes = () => {
   return (
     <>
       <Suspense fallback={<LoadingFallback />}>
         <Switch>
+          <StaffRoute path="/agregar">
+              <AddTown />
+          </StaffRoute>
           <UnauthenticatedRoutes />
         </Switch>
       </Suspense>

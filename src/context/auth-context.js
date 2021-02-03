@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -7,9 +7,11 @@ const { Provider } = AuthContext;
 const AuthProvider = ({ children }) => {
   const history = useHistory();
 
-  const accessToken = localStorage.getItem("token");
-  const refreshToken = localStorage.getItem("token");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
   const user = localStorage.getItem("user");
+  console.log('from local')
+  console.log({refreshToken, accessToken, user})
 
   const [authState, setAuthState] = useState({
     accessToken,
@@ -17,7 +19,7 @@ const AuthProvider = ({ children }) => {
     user: user ? JSON.parse(user) : {},
   });
 
-  const setAuthInfo = ({ accessToken, userInfo, expiresAt }) => {
+  const setAuthInfo = ({ accessToken, user, refreshToken }) => {
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
     localStorage.setItem("user", JSON.stringify(user));
@@ -35,18 +37,16 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
     setAuthState({});
     // history.push("/login");
-    console.log('logging out')
     history.push("/");
   };
 
   const isAuthenticated = () => {
     // TODO: check expiration in token
-    console.log({ accessToken, refreshToken, user });
+    console.log(' is it auth?')
     if (!authState.accessToken) {
-      console.log('already looggees out')
       return false;
     }
-    console.log(`token is ${authState.accessToken}`)
+    console.log('yup');
     return (
       // TODO actually check
       true
@@ -55,6 +55,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const isStaff = () => {
+    console.log('Use is ', authState.user.is_staff)
     return authState.user.is_staff;
   };
 

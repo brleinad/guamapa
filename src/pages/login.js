@@ -30,11 +30,9 @@ const Login = () => {
   const submitCredentials = async credentials => {
     try {
       setLoginLoading(true);
-      console.log('authenticating')
       const { data } = await axios.post(
         `api-auth/login/`, credentials
       );
-      console.log({data})
       authContext.setAuthState({
         accessToken: data.access_token,
         refreshToken: data.refresh_token,
@@ -49,7 +47,6 @@ const Login = () => {
       console.error(error);
       setLoginLoading(false);
       const { data } = error.response;
-      console.log({data})
       //TODO: tranlsate or something
       setLoginError(data.non_field_errors);
       setLoginSuccess(false);
@@ -57,6 +54,7 @@ const Login = () => {
   }
 
   const formik = useFormik({
+    // TODO: remove intial values
     initialValues: {
       email: "daniel@danielrb.dev",
       password: "popo",
