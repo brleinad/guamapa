@@ -58,10 +58,9 @@ const Login = () => {
   }
 
   const formik = useFormik({
-    // TODO: remove intial values
     initialValues: {
-      email: "daniel@danielrb.dev",
-      password: "popo",
+      email: '',
+      password: '',
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
