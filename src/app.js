@@ -1,5 +1,5 @@
 import './app.css';
-import React, { lazy, Suspense, useContext } from 'react'
+import React, { Suspense, useContext } from 'react'
 import { 
   BrowserRouter as Router,
   Route,
@@ -45,21 +45,21 @@ const UnauthenticatedRoutes = () => (
   </Switch>
 )
 
-const AuthenticatedRoute = ({ children, ...rest }) => {
-  const auth = useContext(AuthContext);
-  return (
-    <Route
-      {...rest}
-      render={() => 
-        auth.isAuthenticated() ? (
-          <AppShell>{children}</AppShell>
-        ) : (
-          <Redirect to="/" />
-        )
-      }
-      ></Route>
-  );
-};
+// const AuthenticatedRoute = ({ children, ...rest }) => {
+//   const auth = useContext(AuthContext);
+//   return (
+//     <Route
+//       {...rest}
+//       render={() => 
+//         auth.isAuthenticated() ? (
+//           <AppShell>{children}</AppShell>
+//         ) : (
+//           <Redirect to="/" />
+//         )
+//       }
+//       ></Route>
+//   );
+// };
 
 const StaffRoute = ({ children, ...rest }) => {
   const auth = useContext(AuthContext);

@@ -4,24 +4,15 @@ import {
   TileLayer, 
   Marker, 
   Popup,
-  GeoJSON } from 'react-leaflet';
+  } from 'react-leaflet';
 
 import axios from '../axiosConfig'
-import { useEffect, useState, useContext } from 'react';
-import { FetchContext } from '../context/fetch-context';
+import { useEffect, useState } from 'react';
 
 const Map = () => {
   const center = [14.5534, -90.7353];
   const [towns, setTowns] = useState([]);
-  const fetchContext = useContext(FetchContext);
-
-  const onEachFeature = (feature, layer) => {
-    // const popup = <Popup />
-    if (feature.properties.poblacion) {
-      const poblacion = feature.properties.poblacion;
-      layer.bindPopup(` <h5>poblacion: ${poblacion}</h5> `);
-    }
-  }
+  // const fetchContext = useContext(FetchContext);
 
   useEffect(() => {
     const getTowns = async () => {
@@ -40,7 +31,7 @@ const Map = () => {
       }
     }
     getTowns();
-  }, [])
+  })
 
   return (
     <MapContainer

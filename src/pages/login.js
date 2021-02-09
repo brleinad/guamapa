@@ -44,6 +44,10 @@ const Login = () => {
       setTimeout(() => setRedirectOnLogin(true), 600);
 
     } catch (error) {
+      if (loginLoading) {
+        // TODO
+        console.log('login loading')
+      }
       console.error(error);
       setLoginLoading(false);
       const { data } = error.response;
