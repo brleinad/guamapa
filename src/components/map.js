@@ -21,11 +21,6 @@ const Map = () => {
         // const { data } = await fetchContext.authAxios.get('api/v1/towns/');
         const { data } = await axios.get('api/v1/towns/');
         setTowns(data);
-        console.log(towns)
-        towns.map(town => {
-          console.log(town.location.coordinates)
-          return town;
-        })
       } catch (error) {
         console.error(error);
       }
@@ -45,7 +40,6 @@ const Map = () => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* <GeoJSON data={geojsonData} onEachFeature={onEachFeature} /> */}
       {towns.map((town) => (
         <Marker
           key={town.id}

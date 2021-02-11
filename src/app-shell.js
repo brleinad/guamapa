@@ -6,7 +6,6 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -68,19 +67,26 @@ const AppShell = (props) => {
     setMobileOpen(!mobileOpen);
   };
 
+  const authenticatedLinks = (
+    <>
+    <ListItem button key={'alcaldes-auxiliares'} component={Link} to="/alcaldes-auxiliares">
+      <ListItemText>Alcaldes Auxiliares</ListItemText>
+    </ListItem>
+    </>
+  );
+
   const staffLinks = (
     <>
-    <ListItem button key={'Agregar Comunidad'} component={Link} to="/agregar-comunidad">
-      <ListItemIcon><InboxIcon /></ListItemIcon>
+    <ListItem button key={'agregar-comunidad'} component={Link} to="/agregar-comunidad">
+      {/* <ListItemIcon><InboxIcon /></ListItemIcon> */}
       <ListItemText primary={'Agregar Comunidad'} />
     </ListItem>
 
-    <ListItem button key={'Alcaldes Auxiliares'} component={Link} to="/agregar-alcalde-auxiliar">
-      <ListItemIcon><InboxIcon /></ListItemIcon>
-      <ListItemText primary={'Alcaldes Auxiliares'} />
+    <ListItem button key={'agregar-alcalde-auxiliar'} component={Link} to="/agregar-alcalde-auxiliar">
+      <ListItemText primary={'Agregar Alcalde Auxiliar'} />
     </ListItem>
     </>
-  )
+  );
 
   const drawer = (
     <div>
@@ -88,15 +94,12 @@ const AppShell = (props) => {
       <Divider />
       <List>
         <ListItem button key={'Mapa'} component={Link} to="/">
-          <ListItemIcon><InboxIcon /></ListItemIcon>
+          {/* <ListItemIcon><MapIcon /></ListItemIcon> */}
           <ListItemText primary={'Mapa'} />
         </ListItem>
 
-        {
-          authContext.isStaff() ? staffLinks : <br/>
-          }
-
-
+        {authContext.isAuthenticated() && authenticatedLinks}
+        {authContext.isStaff() && staffLinks}
       </List>
       <Divider />
     </div>

@@ -15,6 +15,7 @@ import AppShell from './app-shell';
 import Map from './components/map';
 import AddTown from './pages/add-town';
 import AddMayor from './pages/add-mayor'
+import Mayors from './pages/mayors'
 
 // import {useUser} from './context/auth'
 // import axios from './axiosConfig'
@@ -46,21 +47,21 @@ const UnauthenticatedRoutes = () => (
   </Switch>
 )
 
-// const AuthenticatedRoute = ({ children, ...rest }) => {
-//   const auth = useContext(AuthContext);
-//   return (
-//     <Route
-//       {...rest}
-//       render={() => 
-//         auth.isAuthenticated() ? (
-//           <AppShell>{children}</AppShell>
-//         ) : (
-//           <Redirect to="/" />
-//         )
-//       }
-//       ></Route>
-//   );
-// };
+const AuthenticatedRoute = ({ children, ...rest }) => {
+  const auth = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={() => 
+        auth.isAuthenticated() ? (
+          <AppShell>{children}</AppShell>
+        ) : (
+          <Redirect to="/" />
+        )
+      }
+      ></Route>
+  );
+};
 
 const StaffRoute = ({ children, ...rest }) => {
   const auth = useContext(AuthContext);
@@ -68,7 +69,7 @@ const StaffRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={() => 
-        auth.isAuthenticated() && auth.isStaff() ? (
+        auth.isStaff() ? (
           <AppShell>{children}</AppShell>
         ) : (
           <Redirect to="/" />
@@ -83,6 +84,9 @@ const AppRoutes = () => {
     <>
       <Suspense fallback={<LoadingFallback />}>
         <Switch>
+          <AuthenticatedRoute path="/alcaldes-auxiliares">
+            <Mayors />
+          </AuthenticatedRoute>
           <StaffRoute path="/agregar-comunidad">
               <AddTown />
           </StaffRoute>

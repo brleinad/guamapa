@@ -52,7 +52,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const isStaff = () => {
-    return authState?.user?.is_staff || false;
+    if (isAuthenticated()) {
+      return authState?.user?.is_staff || false;
+    }
+    return false;
   };
 
   return (
