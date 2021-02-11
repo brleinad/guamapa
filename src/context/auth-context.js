@@ -10,7 +10,6 @@ const AuthProvider = ({ children }) => {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
   const user = localStorage.getItem("user");
-  console.log('from local')
   console.log({refreshToken, accessToken, user})
 
   const [authState, setAuthState] = useState({
@@ -42,11 +41,9 @@ const AuthProvider = ({ children }) => {
 
   const isAuthenticated = () => {
     // TODO: check expiration in token
-    console.log(' is it auth?')
     if (!authState.accessToken) {
       return false;
     }
-    console.log('yup');
     return (
       // TODO actually check
       true
@@ -55,8 +52,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const isStaff = () => {
-    console.log('Use is ', authState.user.is_staff)
-    return authState.user.is_staff;
+    return authState?.user?.is_staff || false;
   };
 
   return (

@@ -68,6 +68,20 @@ const AppShell = (props) => {
     setMobileOpen(!mobileOpen);
   };
 
+  const staffLinks = (
+    <>
+    <ListItem button key={'Agregar Comunidad'} component={Link} to="/agregar-comunidad">
+      <ListItemIcon><InboxIcon /></ListItemIcon>
+      <ListItemText primary={'Agregar Comunidad'} />
+    </ListItem>
+
+    <ListItem button key={'Alcaldes Auxiliares'} component={Link} to="/agregar-alcalde-auxiliar">
+      <ListItemIcon><InboxIcon /></ListItemIcon>
+      <ListItemText primary={'Alcaldes Auxiliares'} />
+    </ListItem>
+    </>
+  )
+
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -77,16 +91,11 @@ const AppShell = (props) => {
           <ListItemIcon><InboxIcon /></ListItemIcon>
           <ListItemText primary={'Mapa'} />
         </ListItem>
-        
-        <ListItem button key={'Alcaldes Auxiliares'}>
-          <ListItemIcon><InboxIcon /></ListItemIcon>
-          <ListItemText primary={'Alcaldes Auxiliares'} />
-        </ListItem>
 
-        <ListItem button key={'Agregar Comunidad'} component={Link} to="/agregar">
-          <ListItemIcon><InboxIcon /></ListItemIcon>
-          <ListItemText primary={'Agregar Comunidad'} />
-        </ListItem>
+        {
+          authContext.isStaff() ? staffLinks : <br/>
+          }
+
 
       </List>
       <Divider />

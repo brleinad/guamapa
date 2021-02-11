@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from "react";
-import axios from "axios";
-// import axios from '../axiosConfig'
+// import axios from "axios";
+import axios from '../axiosConfig'
 import { AuthContext } from "./auth-context";
 
 const FetchContext = createContext();
@@ -43,6 +43,7 @@ const FetchProvider = ({ children }) => {
             user: authContext.authState.user,
           })
           originalRequest.headers.Authorization = `bearer ${res.data.access}`;
+
           console.log("Access token refreshed!");
           console.log(res.data)
           return authAxios(originalRequest);

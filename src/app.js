@@ -14,6 +14,7 @@ import Login from './pages/login';
 import AppShell from './app-shell';
 import Map from './components/map';
 import AddTown from './pages/add-town';
+import AddMayor from './pages/add-mayor'
 
 // import {useUser} from './context/auth'
 // import axios from './axiosConfig'
@@ -82,8 +83,11 @@ const AppRoutes = () => {
     <>
       <Suspense fallback={<LoadingFallback />}>
         <Switch>
-          <StaffRoute path="/agregar">
+          <StaffRoute path="/agregar-comunidad">
               <AddTown />
+          </StaffRoute>
+          <StaffRoute path="/agregar-alcalde-auxiliar">
+              <AddMayor />
           </StaffRoute>
           <UnauthenticatedRoutes />
         </Switch>
