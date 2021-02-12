@@ -6,28 +6,9 @@ import {
   Popup,
   } from 'react-leaflet';
 
-import axios from '../axiosConfig'
-import { useEffect, useState } from 'react';
 
-const Map = () => {
+const Map = ({towns}) => {
   const center = [14.5534, -90.7353];
-  const [towns, setTowns] = useState([]);
-  // const fetchContext = useContext(FetchContext);
-
-  useEffect(() => {
-    const getTowns = async () => {
-      try {
-        console.log('getting towns')
-        // const { data } = await fetchContext.authAxios.get('api/v1/towns/');
-        const { data } = await axios.get('api/v1/towns/');
-        setTowns(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    getTowns();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <MapContainer

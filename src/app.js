@@ -12,10 +12,10 @@ import { AuthProvider, AuthContext } from './context/auth-context';
 import { FetchProvider } from './context/fetch-context';
 import Login from './pages/login';
 import AppShell from './app-shell';
-import Map from './components/map';
 import AddTown from './pages/add-town';
 import AddMayor from './pages/add-mayor'
 import Mayors from './pages/mayors'
+import Home from './pages/home'
 
 // import {useUser} from './context/auth'
 // import axios from './axiosConfig'
@@ -41,7 +41,7 @@ const UnauthenticatedRoutes = () => (
     </Route>
     <Route path="/">
       <AppShell>
-        <Map />
+        <Home />
       </AppShell>
     </Route>
   </Switch>

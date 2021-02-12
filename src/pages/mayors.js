@@ -38,7 +38,7 @@ const Mayors = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table} aria-label="alcaldes auxiliares">
         <TableHead>
           <TableRow>
             <TableCell>Nombre</TableCell>
