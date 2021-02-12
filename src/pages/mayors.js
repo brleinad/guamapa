@@ -27,7 +27,6 @@ const Mayors = () => {
       try {
         const { data } = await fetchContext.authAxios.get("api/v1/assistant-mayors/");
         setMayors(data);
-        console.log(mayors)
       } catch(error) {
       }
     };

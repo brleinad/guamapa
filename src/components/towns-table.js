@@ -6,24 +6,25 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import TownMayorDetail from './mayor-details';
 
 
 const TownsTable = ({towns}) => {
-
-  const [selectedTown, setSelectedTown] = useState({
-    name: '',
-  });
+  const [selectedTown, setSelectedTown] = useState();
 
   const onTownSelect = (town) => {
     setSelectedTown(town);
   }
-
   const isSelected = (town) => {
     return town.id === selectedTown.id;
   }
+  const onTownUnselect = () => {
+    setSelectedTown(false);
+  }
 
   return (
-    <>
+    !selectedTown?.id ?
     <TableContainer component={Paper}>
       <Table aria-label="comunidades">
         <TableHead>
@@ -49,9 +50,10 @@ const TownsTable = ({towns}) => {
         </TableBody>
       </Table>
     </TableContainer>
-    <p> Comunidad seleccionada: {selectedTown.name}</p>
+    : <>
+    <Button onClick={onTownUnselect}>Comunidades</Button>
+    <TownMayorDetail town={selectedTown} />
     </>
-
   )
 
 }
