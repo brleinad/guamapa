@@ -1,27 +1,19 @@
 import React, {useContext} from 'react';
-import { useFormik } from 'formik';
 import * as yup from 'yup';
 import  CardActions  from '@material-ui/core/CardActions'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
-import { Button, LinearProgress } from '@material-ui/core';
+import { Button, 
+  // LinearProgress 
+} from '@material-ui/core';
 import {
-  TimePicker,
   DatePicker,
-  DateTimePicker,
 } from 'formik-material-ui-pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-
-
-
-
 import { FetchContext } from '../context/fetch-context';
-
-interface Mayor {
-}
 
 const AddMayor = () => {
 
@@ -71,13 +63,13 @@ const AddMayor = () => {
 
     <Formik
     initialValues= {{
-      first_name: 'juan',
-      last_name: 'lo',
-      occupation: 'alcalde',
-      gender: 'M',
+      first_name: '',
+      last_name: '',
+      occupation: '',
+      gender: '',
       activity: '',
       ethnicity: '',
-      age: null,
+      age: '',
       appointment_date: new Date(),
     }}
     validationSchema={mayorSchema}

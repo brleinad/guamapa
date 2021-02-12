@@ -17,22 +17,17 @@ const AddTown = () => {
       .string('Nombre de la comunidad')
       .required(),
     category: yup
-      .string()
-      .required(),
+      .string(),
     lng: yup
-      .number()
-      .required(),
+      .number(),
     lat: yup
-      .number()
-      .required(),
+      .number(),
     elevation: yup
       .number()
-      .integer()
-      .required(),
+      .integer(),
     population: yup
       .number()
-      .integer()
-      .required(),
+      .integer(),
 
   })
 
@@ -56,19 +51,12 @@ const AddTown = () => {
 
   const formik = useFormik({
     initialValues: {
-      //TODO: remove initial values
-      name: 'el estor',
-      category: 'pueblo',
-      lng: -90.71479797363281,
-      lat: 14.551517901362407,
-      population: 5000,
-      elevation: 400,
-      // name: '',
-      // category: '',
-      // lng: '', 
-      // lat: '',
-      // population: '',
-      // elevation: '', 
+      name: '',
+      category: '',
+      lng: '', 
+      lat: '',
+      population: '',
+      elevation: '', 
     },
     validationSchema: townSchema,
     onSubmit: (values) => onAddTown(values)
