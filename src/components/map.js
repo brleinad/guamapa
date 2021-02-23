@@ -3,8 +3,9 @@ import {
   MapContainer, 
   TileLayer, 
   Marker, 
-  Popup,
   } from 'react-leaflet';
+
+import MapPopup from './map-popup';
 
 
 const Map = ({towns}) => {
@@ -29,14 +30,7 @@ const Map = ({towns}) => {
             lng: town.location.coordinates[0],
           }}
         >
-          <Popup>
-            {/* TODO: style this */}
-            <ul>
-              <li>{town.category} - {town.name}</li>
-              <li>Población: {town.population}</li>
-              <li>Elevación: {town.elevation }</li>
-            </ul>
-          </Popup>
+          <MapPopup town={town} />
         </Marker>
       ))}
     </MapContainer>

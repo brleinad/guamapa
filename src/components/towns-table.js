@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,12 +8,17 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TownMayorDetail from './mayor-details';
+import { AuthContext } from '../context/auth-context';
 
 
 const TownsTable = ({towns}) => {
   const [selectedTown, setSelectedTown] = useState();
+  const authContext = useContext(AuthContext);
 
   const onTownSelect = (town) => {
+    if (!authContext.isAuthenticated()) {
+      return;
+    }
     setSelectedTown(town);
   }
   const isSelected = (town) => {
