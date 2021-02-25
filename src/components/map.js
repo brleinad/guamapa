@@ -8,15 +8,16 @@ import {
 import MapPopup from './map-popup';
 
 
-const Map = ({towns}) => {
+const Map = ({towns, className}) => {
   const center = [14.5534, -90.7353];
 
   return (
     <MapContainer
+      className={className}
       center={center}
       zoom={13}
       scrollWheelZoom={false}
-      style={{ height: "400px" }}
+      style={{ height: "500px" }}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

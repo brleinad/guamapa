@@ -11,7 +11,7 @@ import TownMayorDetail from './mayor-details';
 import { AuthContext } from '../context/auth-context';
 
 
-const TownsTable = ({towns}) => {
+const TownsTable = ({className, towns}) => {
   const [selectedTown, setSelectedTown] = useState();
   const authContext = useContext(AuthContext);
 
@@ -30,13 +30,13 @@ const TownsTable = ({towns}) => {
 
   return (
     !selectedTown?.id ?
-    <TableContainer component={Paper}>
+    <TableContainer className={className} component={Paper}>
       <Table aria-label="comunidades">
         <TableHead>
           <TableRow>
-            <TableCell>Categoria</TableCell>
+            {/* <TableCell>Categoria</TableCell> */}
             <TableCell>Comunidad</TableCell>
-            <TableCell>Poblacion</TableCell>
+            {/* <TableCell>Poblacion</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -47,9 +47,9 @@ const TownsTable = ({towns}) => {
               onClick={() => onTownSelect(town)}
               aria-checked={isSelected}
             >
-              <TableCell >{town.category}</TableCell>
+              {/* <TableCell >{town.category}</TableCell> */}
               <TableCell>{town.name}</TableCell>
-              <TableCell>{town.population}</TableCell>
+              {/* <TableCell>{town.population}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
