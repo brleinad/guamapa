@@ -97,6 +97,7 @@ const AppShell = (props) => {
     setOpen(false);
   };
 
+    // eslint-disable-next-line no-unused-vars
   const authenticatedLinks = (
     <>
     <ListItem button key={'alcaldes-auxiliares'} component={Link} to="/alcaldes-auxiliares">
@@ -105,6 +106,7 @@ const AppShell = (props) => {
     </>
   );
 
+    // eslint-disable-next-line no-unused-vars
   const staffLinks = (
     <>
     <ListItem button key={'agregar-comunidad'} component={Link} to="/agregar-comunidad">
