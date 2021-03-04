@@ -6,7 +6,7 @@ import {
   ListItemText,
   Typography } from '@material-ui/core';
 
-const MapPopup = ({town}) => {
+const TownPopup = ({town}) => {
 
   const header = `${town.category} ${town.name}`
 
@@ -28,4 +28,4 @@ const MapPopup = ({town}) => {
   )
 }
 
-export default MapPopup;
+export default TownPopup;

@@ -1,29 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from '../axiosConfig'
-import Map from '../components/map';
+import TownsMap from '../components/towns-map';
 import TownsTable from '../components/towns-table';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
     flexWrap: 'wrap',
     marginTop: '88px',
     position: 'relative',
   },
   map: {
-    width: '800px',
+    width: '80%',
     [theme.breakpoints.down('sm')]: {
       width: '300px',
     },
     marginRight: '44px',
   },
   townList: {
-    width: 'auto',
-    maxWidth: '200px',
-    minWidth: '200px',
+    width: '10%',
+    height: '700px'
   }
 }));
 
@@ -49,7 +48,7 @@ const Home = () => {
   }, [])
   return  (
     <div className={classes.container}>
-      <Map className={classes.map} towns={towns} />
+      <TownsMap className={classes.map} towns={towns} />
       <TownsTable className={classes.townList} towns={towns} />
     </div>
   )

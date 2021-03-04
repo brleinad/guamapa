@@ -127,9 +127,13 @@ const AppShell = (props) => {
       </div>
       <Divider />
       <List>
-        <ListItem button key={'Mapa'} component={Link} to="/">
+        <ListItem button key={'Comunidades'} component={Link} to="/">
           {/* <ListItemIcon><MapIcon /></ListItemIcon> */}
-          <ListItemText primary={'Mapa'} />
+          <ListItemText primary={'Comunidades'} />
+        </ListItem>
+
+        <ListItem button key={'Negocios'} component={Link} to="/negocios">
+          <ListItemText primary={'Negocios'} />
         </ListItem>
 
         {authContext.isAuthenticated() && authenticatedLinks}

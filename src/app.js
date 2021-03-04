@@ -13,9 +13,10 @@ import { FetchProvider } from './context/fetch-context';
 import Login from './pages/login';
 import AppShell from './app-shell';
 import AddTown from './pages/add-town';
-import AddMayor from './pages/add-mayor'
-import Mayors from './pages/mayors'
-import Home from './pages/home'
+import AddMayor from './pages/add-mayor';
+import Mayors from './pages/mayors';
+import Home from './pages/home';
+import Negocios from './pages/negocios';
 
 // import {useUser} from './context/auth'
 // import axios from './axiosConfig'
@@ -38,6 +39,11 @@ const UnauthenticatedRoutes = () => (
   <Switch>
     <Route path="/login">
       <Login />
+    </Route>
+    <Route path="/negocios">
+      <AppShell>
+        <Negocios />
+      </AppShell>
     </Route>
     <Route path="/">
       <AppShell>
@@ -92,6 +98,9 @@ const AppRoutes = () => {
           </StaffRoute>
           <StaffRoute path="/agregar-alcalde-auxiliar">
               <AddMayor />
+          </StaffRoute>
+          <StaffRoute path="/agregar-negocio">
+              {/* <AddBusiness /> */}
           </StaffRoute>
           <UnauthenticatedRoutes />
         </Switch>
