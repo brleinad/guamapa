@@ -99,7 +99,7 @@ const Negocios = () => {
   const businessDialog = (
     <>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Agregar Comunidad
+        Agregar Negocio
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Agregar Negocio</DialogTitle>

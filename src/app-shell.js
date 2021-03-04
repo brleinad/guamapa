@@ -132,9 +132,9 @@ const AppShell = (props) => {
           <ListItemText primary={'Comunidades'} />
         </ListItem>
 
-        <ListItem button key={'Negocios'} component={Link} to="/negocios">
+        {/* <ListItem button key={'Negocios'} component={Link} to="/negocios">
           <ListItemText primary={'Negocios'} />
-        </ListItem>
+        </ListItem> */}
 
         {authContext.isAuthenticated() && authenticatedLinks}
         {authContext.isStaff() && staffLinks}
