@@ -5,10 +5,10 @@ import {
   Marker, 
   } from 'react-leaflet';
 
-import BusinessPopup from './business-popup';
+import { PoiPopup }  from './poi-popup';
 
 
-const BusinessesMap = ({businesses, className, children}) => {
+export const PoisMap = ({pois, className, children}) => {
   const center = [14.5534, -90.7353];
 
   return (
@@ -23,19 +23,17 @@ const BusinessesMap = ({businesses, className, children}) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {businesses.map((business) => (
+      {pois.map((poi) => (
         <Marker
-          key={business.id}
+          key={poi.id}
           position={{
-            lat: business.location.coordinates[1],
-            lng: business.location.coordinates[0],
+            lat: poi.location.coordinates[1],
+            lng: poi.location.coordinates[0],
           }}
         >
-          <BusinessPopup business={business} />
+          <PoiPopup poi={poi} />
         </Marker>
       ))}
     </MapContainer>
   );
 }
-
-export default BusinessesMap;

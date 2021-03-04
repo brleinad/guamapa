@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from '../axiosConfig'
-import BusinessesMap from '../components/businesses-map';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -11,6 +10,8 @@ import { TextField } from 'formik-material-ui';
 import * as yup from 'yup';
 import { FetchContext } from '../context/fetch-context';
 import { AuthContext } from '../context/auth-context';
+
+import { PoisMap } from '../components/pois-map';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-  const businessSchema = yup.object({
+  const poiSchema = yup.object({
     name: yup
       .string('Nombre')
       .required(),
@@ -47,11 +48,11 @@ const useStyles = makeStyles((theme) => ({
       .required(),
   });
 
-const Negocios = () => {
+export const PointsOfInterest = () => {
   const fetchContext = useContext(FetchContext);
   const authContext =  useContext(AuthContext);
 
-  const [businesses, setBusinesses] = useState([]);
+  const [pois, setPois] = useState([]);
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -67,9 +68,9 @@ const Negocios = () => {
   useEffect(() => {
     const getNegocios = async () => {
       try {
-        console.log('getting businesses')
-        const { data } = await axios.get('api/v1/businesses/');
-        setBusinesses(data);
+        console.log('getting pois')
+        const { data } = await axios.get('api/v1/points-of-interest/');
+        setPois(data);
       } catch (error) {
         console.error(error);
       }
@@ -78,7 +79,7 @@ const Negocios = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
-  const onAddBusiness = async (values) => {
+  const onAddPoi = async (values) => {
     try {
       values.location = {
         type: 'Point',
@@ -86,7 +87,7 @@ const Negocios = () => {
       }
       console.log({values})
    
-      const { data } = await fetchContext.authAxios.post('api/v1/businesses/', values)
+      const { data } = await fetchContext.authAxios.post('api/v1/points-of-interest/', values)
       console.log('posted')
       console.log(data);
       setOpen(false)
@@ -96,27 +97,22 @@ const Negocios = () => {
 
   }
 
-  const businessDialog = (
+  const poiDialog = (
     <>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Agregar Negocio
+        Agregar Punto de Interes
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Agregar Negocio</DialogTitle>
+        <DialogTitle id="form-dialog-title">Punto de Interes nuevo</DialogTitle>
         <DialogContent>
     <Formik
     initialValues= {{
-      first_name: '',
-      last_name: '',
-      occupation: '',
-      gender: '',
-      activity: '',
-      ethnicity: '',
-      age: '',
-      appointment_date: new Date(),
+      name: '',
+      lat: '',
+      lng: '',
     }}
-    validationSchema={businessSchema}
-    onSubmit={(values) => onAddBusiness(values)}
+    validationSchema={poiSchema}
+    onSubmit={(values) => onAddPoi(values)}
     >
     {({ submitForm }) => (
         <Form>
@@ -161,11 +157,9 @@ const Negocios = () => {
 
   return  (
     <div className={classes.container}>
-      <BusinessesMap className={classes.map} businesses={businesses} />
-    {authContext.isStaff() && businessDialog} 
+      <PoisMap className={classes.map} pois={pois} />
+    {authContext.isStaff() && poiDialog} 
     </div>
   )
 
 }
-
-export default Negocios;

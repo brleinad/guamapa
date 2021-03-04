@@ -16,7 +16,7 @@ import AddTown from './pages/add-town';
 import AddMayor from './pages/add-mayor';
 import Mayors from './pages/mayors';
 import Home from './pages/home';
-import Negocios from './pages/negocios';
+import { PointsOfInterest }  from './pages/points-of-interest';
 
 // import {useUser} from './context/auth'
 // import axios from './axiosConfig'
@@ -40,9 +40,9 @@ const UnauthenticatedRoutes = () => (
     <Route path="/login">
       <Login />
     </Route>
-    <Route path="/negocios">
+    <Route path="/puntos-de-interes">
       <AppShell>
-        <Negocios />
+        <PointsOfInterest />
       </AppShell>
     </Route>
     <Route path="/">
